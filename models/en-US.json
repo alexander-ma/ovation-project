@@ -19,16 +19,12 @@
                     "name": "FindFlightIntent",
                     "slots": [
                         {
-                            "name": "place",
-                            "type": "AMAZON.US_CITY"
-                        },
-                        {
                             "name": "date",
                             "type": "AMAZON.DATE"
                         }
                     ],
                     "samples": [
-                        "find the cheapest flight from {place} to boston on {date}"
+                        "find the cheapest flight from austin to boston on {date}"
                     ]
                 }
             ],
@@ -41,15 +37,6 @@
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [
-                        {
-                            "name": "place",
-                            "type": "AMAZON.US_CITY",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.15593272667.857187674"
-                            }
-                        },
                         {
                             "name": "date",
                             "type": "AMAZON.DATE",
@@ -64,15 +51,6 @@
             ]
         },
         "prompts": [
-            {
-                "id": "Elicit.Slot.15593272667.857187674",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Where are you flying from?"
-                    }
-                ]
-            },
             {
                 "id": "Elicit.Slot.15593272667.861237588269",
                 "variations": [

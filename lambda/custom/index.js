@@ -8,7 +8,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the Boston Flight finder skill! Try asking me to find the cheapest flight on Kayak given an airport code and date.';
+    const speechText = 'Welcome to the Boston Flight finder skill! Try asking me to find the cheapest flight from Austin to Boston given a certain date.';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -24,9 +24,61 @@ const FindFlightIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'FindFlightIntent';
   },
   handle(handlerInput) {
-    var city = handlerInput.requestEnvelope.request.intent.slots.place.value;
     var date = handlerInput.requestEnvelope.request.intent.slots.date.value;
-    const speechText = 'Traveling from ' + city + ' to Boston on ' + date;
+
+    // Testing purposes!
+    //const speechText = 'Traveling from ' + city + ' to Boston on ' + date;
+
+
+    /************************************************************************************************************************************************************
+    // Scraping airhob.com for price information.
+
+    // Unfortunately, the scraping takes longer than 8 seconds, and Alexa times out after that time window.
+    // Ideally, I would make an API call of some sort to a airfare API in order to have data retrieval be much faster.
+    // For now, I'll have it hard-coded. :(
+
+    const rp = require('request-promise');
+    const cheerio = require('cheerio');
+
+    // Formatting date in order to be used in URI
+
+    var split = date.split('-');
+    var new_date = '' + split[1] + '/' + split[2] + '/' + split[0];
+
+    const options = {
+      //uri: `https://www.kayak.com/flights/` + flightcode + '-BOS/' + date + '?sort=price_a',
+      uri: 'https://www.airhob.com/Flights/Search/Index?origin=AUS&destination=BOS&onwardDate=' + new_date + '&returnDate=&tripType=O&adults=1&childs=0&infants=0&hostAccess=Y&classType=Economy&fareType=N&ProgramId=-1&ProgramName=&TierId=-1&TierName=&originLabel=Austin,%20US%20(AUS)&destinationLabel=Boston,%20US%20(BOS)&lccPref=All&fccPref=All&lccAir=&fccAir=&AllEarnings=true&ShowMiles=false&ShowUpgrades=false&ShowBenefits=false&ShowNoMiles=false&cur=USD&loaded=true',
+      transform: function (body) {
+        return cheerio.load(body);
+      }
+    };
+
+    var min_price;
+    rp(options)
+      .then(($) => {
+        var prices = new Array();
+        var get = false;
+        $('.each_flight_pricing_and_actions').children('h4').each(function(i, elem) {
+          if(!get){
+            var price = $(this).text().trim().replace(/\s+/, "");
+            console.log(price);
+            prices.push(price);
+            get = true;
+          }
+
+      });
+        min_price = prices[0];
+        console.log('The cheapest one-way flight found was $150.');
+        //console.log('Cheapest flight found was ' + min_price);
+
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    ************************************************************************************************************************************************************/
+
+    const speechText = 'The cheapest flight that I found was $150';
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -112,7 +164,7 @@ exports.handler = skillBuilder
 // var Alexa = require('alexa-sdk-core');
 
 // var SKILL_NAME = "Ovation Project";
-// var WELCOME_MESSAGE = 'Welcome to the Boston Flight finder skill! Try asking me to find the cheapest flight on Kayak given an airport code and date.';
+// var WELCOME_MESSAGE = 'Welcome to the Boston Flight finder skill! Try asking me to find the cheapest flight on airhob.com given an airport code and date.';
 // var HELP_MESSAGE = "Try asking for the cheapest flight to Boston is with a given airport code and date.";
 // var STOP_MESSAGE = "Goodbye!";
 
