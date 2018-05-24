@@ -26,7 +26,7 @@ const FindFlightIntentHandler = {
   handle(handlerInput) {
     var city = handlerInput.requestEnvelope.request.intent.slots.place.value;
     var date = handlerInput.requestEnvelope.request.intent.slots.date.value;
-    const speechText = 'Traveling from ${city} to Boston on ${date}';
+    const speechText = 'Traveling from ' + city + ' to Boston on ' + date;
 
     return handlerInput.responseBuilder
       .speak(speechText)
