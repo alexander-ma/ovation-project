@@ -3,14 +3,12 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "Sample Short Description",
+          "summary": "This is the Ovation Internship Technical Challenge.",
           "examplePhrases": [
-            "Alexa open hello world",
-            "Alexa tell hello world hello",
-            "Alexa ask hello world say hello"
+            "Alexa open ovation project"
           ],
-          "name": "ovation",
-          "description": "Sample Full Description"
+          "name": "ovation project",
+          "description": "This Alexa skill finds the cheapest flight on Kayak.com to Boston given a location and a specific date."
         }
       },
       "isAvailableWorldwide": true,

@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "greeter",
+      "invocationName": "ovation project",
       "types": [
 
       ],
@@ -25,14 +25,20 @@
           ]
         },
         {
-          "name": "HelloWorldIntent",
+          "name": "FindFlightIntent",
           "slots": [
-
+            {
+                "name": "place",
+                "type": "AMAZON.US_CITY"
+            },
+            {
+                "name": "date",
+                "type": "AMAZON.DATE"
+            }
           ],
           "samples": [
-            "hello",
-            "say hello",
-            "say hello world"
+              "find the cheapest flight from {place} to boston on {date}"
+              
           ]
         }
       ]
