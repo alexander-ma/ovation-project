@@ -13,4 +13,4 @@ Fortunately, I was able to find an alternative website that enabled me to scrape
 
 The script that I wrote to scrape the webpage for prices takes a lot longer than Alexa allows responses to take. According to the [Alexa API](https://developer.amazon.com/docs/device-apis/alexa-interface.html#response), Alexa only waits for 8 seconds before timing out. Boo. There are ways to get around this such as having Audio play (like elevator music) in order for the processing to finish, but isn't very practical.
 
-As of right now, I have my parsing code commented out in the FindFlightIntent function to hopefully be function in the near future.
+As of right now, I have my parsing code commented out in the FindFlightIntent function to hopefully be functional in the near future.
