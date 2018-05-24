@@ -1,47 +1,87 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "ovation project",
-      "types": [
-
-      ],
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": [
-
-          ]
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "ovation project",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "FindFlightIntent",
+                    "slots": [
+                        {
+                            "name": "place",
+                            "type": "AMAZON.US_CITY"
+                        },
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE"
+                        }
+                    ],
+                    "samples": [
+                        "find the cheapest flight from {place} to boston on {date}"
+                    ]
+                }
+            ],
+            "types": []
         },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": [
-
-          ]
+        "dialog": {
+            "intents": [
+                {
+                    "name": "FindFlightIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "place",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.15593272667.857187674"
+                            }
+                        },
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.15593272667.861237588269"
+                            }
+                        }
+                    ]
+                }
+            ]
         },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": [
-
-          ]
-        },
-        {
-          "name": "FindFlightIntent",
-          "slots": [
+        "prompts": [
             {
-                "name": "place",
-                "type": "AMAZON.US_CITY"
+                "id": "Elicit.Slot.15593272667.857187674",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Where are you flying from?"
+                    }
+                ]
             },
             {
-                "name": "date",
-                "type": "AMAZON.DATE"
+                "id": "Elicit.Slot.15593272667.861237588269",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "When do you plan on flying to Boston?"
+                    }
+                ]
             }
-          ],
-          "samples": [
-              "find the cheapest flight from {place} to boston on {date}"
-              
-          ]
-        }
-      ]
+        ]
     }
-  }
 }

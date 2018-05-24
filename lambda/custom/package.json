@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "ask-sdk-core": "^2.0.0",
-    "ask-sdk-model": "^1.0.0"
+    "ask-sdk-model": "^1.0.0",
+    "cheerio": "^1.0.0-rc.2",
+    "kayak-scraper": "^1.0.2",
+    "minimatch": "^3.0.4",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
   }
 }
