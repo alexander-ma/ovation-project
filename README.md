@@ -11,6 +11,6 @@ Initially, I looked towards scraping Kayak.com for the information by sorting th
 
 Fortunately, I was able to find an alternative website that enabled me to scrape their website in order to get the pricing information! Whoohoo! However, I ran into another problem.  
 
-The script that I wrote to scrape the webpage for prices takes a lot longer than Alexa allows responses to take. According to the [Alexa API](https://developer.amazon.com/docs/device-apis/alexa-interface.html#response), Alexa only waits for 8 seconds before timing out. Boo. There are ways to get around this such as having Audio play (like elevator music) in order for the processing to finish, but isn't very practical.
+The script that I wrote to scrape the webpage for prices takes a lot longer than Alexa allows responses to take. According to the [Alexa Documentation](https://developer.amazon.com/docs/device-apis/alexa-interface.html#response), Alexa only waits for 8 seconds before timing out. Boo. There are ways to get around this such as having Audio play (like elevator music) in order for the processing to finish, but isn't very practical.
 
 As of right now, I have my parsing code commented out in the FindFlightIntent function to hopefully be functional in the near future.
